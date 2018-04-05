@@ -1,0 +1,3 @@
+[submodule "bundle/jq"]
+	path = bundle/jq
+	url = https://github.com/vito-c/jq.vim.git
