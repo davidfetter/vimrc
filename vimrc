@@ -13,7 +13,7 @@ set background=light
 colorscheme solarized
 
 " Some a few non-crazy defaults
-set sw=4 ts=4 expandtab autoindent smartindent smarttab spell
+set sw=4 ts=4 expandtab autoindent smartindent smarttab spell splitright
 
 " Get rid of trailing whitespace on write.
 " The 'e' flag means don't error.
