@@ -7,3 +7,6 @@
 [submodule "bundle/vipsql"]
 	path = bundle/vipsql
 	url = https://github.com/martingms/vipsql
+[submodule "bundle/vim-enhanced-diff"]
+	path = bundle/vim-enhanced-diff
+	url = https://github.com/chrisbra/vim-diff-enhanced.git
