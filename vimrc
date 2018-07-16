@@ -18,9 +18,21 @@ set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 set sw=4 ts=4 expandtab autoindent smartindent smarttab spell splitright laststatus=2
 set backspace=indent,eol,start
 
-" Get rid of trailing whitespace on write.
+" Function to get rid of trailing whitespace:
 " The 'e' flag means don't error.
-au BufWritePre * :%s/\s\+$//e
+fun! StripTrailingWhitespace()
+	" Only strip if the b:noStripeWhitespace variable isn't set
+    if exists('b:noStripWhitespace')
+		return
+    endif
+	echom "Got to here"
+    %s/\s\+$//e
+endfun
+
+" For .out files, set the variable.
+au BufNewFile,BufRead *.out let b:noStripWhitespace=1
+" Call on write.
+autocmd BufWritePre * call StripTrailingWhitespace()
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
