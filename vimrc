@@ -29,8 +29,9 @@ fun! StripTrailingWhitespace()
     %s/\s\+$//e
 endfun
 
-" For .out files, set the variable.
+" For the following types of files, set the variable.
 au BufNewFile,BufRead *.out let b:noStripWhitespace=1
+au BufNewFile,BufRead *.sgml let b:noStripWhitespace=1
 " Call on write.
 autocmd BufWritePre * call StripTrailingWhitespace()
 
@@ -64,6 +65,7 @@ autocmd! GUIEnter * set vb t_vb=
 " Change leader from \ to comma
 let mapleader = ","
 
+" psql!!!
 " Starts an async psql job, prompting for the psql arguments.
 " Also opens a scratch buffer where output from psql is directed.
 noremap <leader>po :VipsqlOpenSession<CR>
@@ -88,3 +90,27 @@ noremap <leader>pb :VipsqlSendBuffer<CR>
 
 " Sends `SIGINT` (C-c) to the psql process.
 noremap <leader>pc :VipsqlSendInterrupt<CR>
+
+" Paste away!
+" Sharing is caring
+" Sat Jul 28 14:22:47 PDT 2018
+let s:uname = system("uname")
+if s:uname == "Darwin\n"
+	" Mac OS X
+	" --------
+	command! -range=% SP  <line1>,<line2>w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\n' | pbcopy
+	command! -range=% CL  <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | pbcopy
+	command! -range=% VP  <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | pbcopy
+	command! -range=% PB  <line1>,<line2>w !curl -F 'c=@-' https://ptpb.pw/?u=1 | tr -d '\n' | pbcopy
+	command! -range=% IX  <line1>,<line2>w !curl -F 'f:1=<-' ix.io | tr -d '\n' | pbcopy
+	command! -range=% TB  <line1>,<line2>w !nc termbin 9999 | tr -d '\n' | pbcopy
+else
+	" Linux (requires xclip)
+	" ----------------------
+	command! -range=% SP  <line1>,<line2>w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\n' | xclip -i -selection clipboard
+	command! -range=% CL  <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | xclip -i -selection clipboard
+	command! -range=% VP  <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
+	command! -range=% PB  <line1>,<line2>w !curl -F 'c=@-' https://ptpb.pw/?u=1 | tr -d '\n' | xclip -i -selection clipboard
+	command! -range=% IX  <line1>,<line2>w !curl -F 'f:1=<-' ix.io | tr -d '\n' | xclip -i -selection clipboard
+	command! -range=% TB  <line1>,<line2>w !nc termbin 9999 | tr -d '\n' | xclip -i -selection clipboard
+endif
