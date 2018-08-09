@@ -13,3 +13,6 @@
 [submodule "bundle/vim-diff-enhanced"]
 	path = bundle/vim-diff-enhanced
 	url = https://github.com/chrisbra/vim-diff-enhanced.git
+[submodule "bundle/cscope_dynamic"]
+	path = bundle/cscope_dynamic
+	url = https://github.com/erig0/cscope_dynamic.git
