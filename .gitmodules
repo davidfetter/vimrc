@@ -16,3 +16,6 @@
 [submodule "bundle/cscope_dynamic"]
 	path = bundle/cscope_dynamic
 	url = https://github.com/erig0/cscope_dynamic.git
+[submodule "bundle/patchreview-vim"]
+	path = bundle/patchreview-vim
+	url = https://github.com/junkblocker/patchreview-vim
