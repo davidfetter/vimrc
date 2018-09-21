@@ -17,6 +17,7 @@ colorscheme solarized
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 set sw=4 ts=4 expandtab autoindent smartindent smarttab spell splitright laststatus=2
 set backspace=indent,eol,start
+set tags=./tags;,.git/tags;
 
 " Function to get rid of trailing whitespace:
 " The 'e' flag means don't error.
