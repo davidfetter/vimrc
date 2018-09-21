@@ -7,6 +7,7 @@ filetype plugin indent on
 filetype detect
 syntax on
 set nocompatible
+packadd! matchit
 
 " Make sure vim actually sees the color scheme.
 set rtp+=~/.vim/bundle/vim-colors-solarized
