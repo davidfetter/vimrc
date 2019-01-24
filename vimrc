@@ -20,6 +20,9 @@ set sw=4 ts=4 expandtab autoindent smartindent smarttab spell splitright laststa
 set backspace=indent,eol,start
 set tags=./tags;,.git/tags;
 
+" Make K open a :terminal instead of replacing the current buffer.
+set keywordprg=:term\ ++close\ man
+
 " Function to get rid of trailing whitespace:
 " The 'e' flag means don't error.
 fun! StripTrailingWhitespace()
