@@ -16,7 +16,15 @@ colorscheme solarized
 
 " Some a few non-crazy defaults
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
-set sw=4 ts=4 expandtab autoindent smartindent smarttab spell splitright laststatus=2
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+set autoindent
+set smarttab
+set spell
+set splitright
+set laststatus=2
 set backspace=indent,eol,start
 set tags=./tags;,.git/tags;
 
