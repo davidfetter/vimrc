@@ -26,10 +26,51 @@ set spell
 set splitright
 set laststatus=2
 set backspace=indent,eol,start
+
+" ctags
 set tags=./tags;,.git/tags;
 
+" cscope
+if has("cscope")
+    set csto=0
+    set cst
+    set nocsverb
+    " Look upwards for a cscope DB in the .git directory
+    let cscope_db=findfile("cscope.out", ".git;")
+    if !empty(cscope_db) && filereadable(cscope_db)
+        let cscope_path = strpart(cscope_db, 0, match(cscope_db, ".git/cscope.out"))
+        set nocscopeverbose
+        exe "cs add" cscope_db . " " . cscope_path
+        set cscopeverbose
+    elseif $CSCOPE_DB != "" && filereadable($CSCOPE_DB)
+        set nocscopeverbose
+        cs add $CSCOPE_DB
+        set cscopeverbose
+    " else
+        " echo "couldn't find cscope file :("
+    endif
+    nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+endif
+
 " Make K open a :terminal instead of replacing the current buffer.
-set keywordprg=:term\ ++close\ man
+" set keywordprg=:term\ ++close\ man
+" Maybe this is better:
+runtime ftplugin/man.vim
+set keywordprg=:Man
+
+" Things GUI
+if has('gui')
+    if has("gui_macvim")
+        set guifont=Monaco:h14
+    endif
+endif
 
 " Function to get rid of trailing whitespace:
 " The 'e' flag means don't error.
@@ -61,16 +102,14 @@ map <M-l> guww		" Alt-l lowercases word from present position
 map <D-l> guww		" Alt-l lowercases word from present position
 imap </ </<C-x><C-o>
 
-au FileType sql setl formatprg=/usr/local/bin/pg_format\ -p\ '%\([^)]*\)\S+'\ -
-au FileType jq set sw=2 ts=2
-au FileType json set sw=2 ts=2
+au FileType sql setl formatprg=/usr/local/bin/sqlformat\ -r\ -
+" au FileType sql setl formatprg=/Users/davidfetter/go/bin/sqlfmt\ -u
 au FileType json setl formatprg=jq\ '.'
-au FileType sh set sw=2 ts=2
 au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 au FileType c setlocal noexpandtab
 
-augroup progress_report
-    autocmd BufNewFile progress_report* 0r ~/.vim/templates/progress_report
+augroup templates
+    au BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
 augroup END
 
 autocmd! GUIEnter * set vb t_vb=
