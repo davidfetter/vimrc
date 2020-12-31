@@ -49,14 +49,15 @@ if has("cscope")
     " else
         " echo "couldn't find cscope file :("
     endif
-    nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>   " 0: C symbol
+    nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>   " 1: definition
+    nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>   " 2: functions called by this function
+    nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>   " 3: functions calling this function
+    nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>   " 4: find this text string
+    nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>   " 6: find this egrep pattern
+    nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>   " 7: find this file
+    nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR> " 8: files #include'ing this file
+    nmap <C-\>a :cs find a ^<C-R>=expand("<cfile>")<CR>$<CR> " 9: places where this symbol is assigned a value
 endif
 
 " Make K open a :terminal instead of replacing the current buffer.
