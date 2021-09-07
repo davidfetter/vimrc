@@ -1,18 +1,18 @@
 [submodule "bundle/jq"]
-	path = bundle/jq
+	path = pack/plugins/start/jq
 	url = https://github.com/vito-c/jq.vim.git
 [submodule "bundle/vim-colors-solarized"]
-	path = bundle/vim-colors-solarized
+	path = pack/plugins/start/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "bundle/vipsql"]
-	path = bundle/vipsql
+	path = pack/plugins/start/vipsql
 	url = https://github.com/martingms/vipsql
 [submodule "bundle/vim-enhanced-diff"]
-	path = bundle/vim-enhanced-diff
+	path = pack/plugins/start/vim-enhanced-diff
 	url = https://github.com/chrisbra/vim-diff-enhanced.git
 [submodule "bundle/cscope_dynamic"]
-	path = bundle/cscope_dynamic
+	path = pack/plugins/start/cscope_dynamic
 	url = https://github.com/erig0/cscope_dynamic.git
 [submodule "bundle/patchreview-vim"]
-	path = bundle/patchreview-vim
+	path = pack/plugins/start/patchreview-vim
 	url = https://github.com/junkblocker/patchreview-vim
