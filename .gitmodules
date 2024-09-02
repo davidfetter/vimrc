@@ -16,3 +16,9 @@
 [submodule "bundle/patchreview-vim"]
 	path = pack/plugins/start/patchreview-vim
 	url = https://github.com/junkblocker/patchreview-vim
+[submodule "bundle/cscope-dynamic"]
+    path = pack/plugins/start/cscope-dynamic
+    url = https://github.com/erig0/cscope_dynamic.git
+[submodule "bundle/vim-enhanced-diff"]
+    path = pack/plugins/start/vim-enhanced-diff
+    url = https://github.com/chrisbra/vim-diff-enhanced.git
